@@ -1,4 +1,5 @@
-w=0
-while w<=999 :
-    w=w+10
-    print(w)
+from asyncio import wait
+
+
+w=5
+print(w)
