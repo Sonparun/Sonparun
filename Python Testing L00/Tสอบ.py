@@ -67,25 +67,7 @@ if typesphoto == 1 :
     if amount >= 3 :
         discount=((all/100)*5)
         sum=all-discount
-
-elif typesphoto == 2 :
-    amount=int(input('Enter amount = '))
-    price=80
-    all=price*amount
-    if amount >= 3 :
-        discount=((all/100)*5)
-        sum=all-discount
-
-elif typesphoto == 3 :
-    amount=int(input('Enter amount = '))
-    price=70
-    all=price*amount
-    sum=all
-
-
-print('Show Details')
-
-if typesphoto == 1 :
+    print('Show Details')
     print('Your name is ',name)
     print('Type of photo is One icnh')
     print('Amount is ',amount)
@@ -93,13 +75,26 @@ if typesphoto == 1 :
     print('Discount = ',discount)
     print('Net price = ',sum)
 elif typesphoto == 2 :
+    amount=int(input('Enter amount = '))
+    price=80
+    all=price*amount
+    if amount >= 3 :
+        discount=((all/100)*5)
+        sum=all-discount
+    print('Show Details')
     print('Your name is ',name)
     print('Type of photo is Two icnh')
     print('Amount is ',amount)
     print('Total price is',price,'*',amount,' = ',all)
     print('Discount = ',discount)
     print('Net price = ',sum)
+
 elif typesphoto == 3 :
+    amount=int(input('Enter amount = '))
+    price=70
+    all=price*amount
+    sum=all
+    print('Show Details')
     print('Your name is ',name)
     print('Type of photo is Polaroid')
     print('Amount is ',amount)
