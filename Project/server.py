@@ -40,6 +40,7 @@ class ChatServer:
                     client_name = self.client_names[client_socket]
                     print(f"[{now}] {client_name} disconnected of Server 1 from: {addr}")
                     self.broadcast_message(f"[{now}]  {client_name} has left the chat.")
+                    del self.client_names[client_socket]
                     del self.client_sockets[client_socket]
                     client_socket.close()
                     continue
@@ -51,6 +52,8 @@ class ChatServer:
                         client.sendall(f"[{now}] {sender_name}: {data}".encode('utf-8'))
             except Exception as e:
                 if "WinError 10054" in str(e):
+                    continue
+                if "WinError 10038" in str(e):
                     continue
                 if "Errno 9" in str(e):
                     continue
@@ -80,6 +83,10 @@ class ChatServer:
                 try:
                     client_socket.sendall(message.encode('utf-8'))
                 except Exception as e:
+                    if "WinError 10054" in str(e):
+                        continue
+                    if "WinError 10038" in str(e):
+                        continue
                     if "Errno 9" in str(e):
                         continue
                     print(f"Error broadcasting message to {name}: {e}")
@@ -112,7 +119,9 @@ class ChatServer2:
                     client_name = self.client_names[client_socket]
                     print(f"[{now}] {client_name} disconnected of Server 2 from: {addr}")
                     self.broadcast_message(f"[{now}]  {client_name} has left the chat.")
-                    client.socket.close()
+                    del self.client_names[client_socket]
+                    del self.client_sockets[client_socket]
+                    client_socket.close()
                     continue
 
                 print(f"[Room2]Sender: {sender_name}, Time: {current_time}, Message: {data}")
@@ -122,6 +131,10 @@ class ChatServer2:
                         client.sendall(f"[{now}] {sender_name}: {data}".encode('utf-8'))
             except Exception as e:
                 if "WinError 10054" in str(e):
+                    continue
+                if "WinError 10038" in str(e):
+                    continue
+                if "Errno 9" in str(e):
                     continue
                 print(f"Error: {e}")
                 break
@@ -149,6 +162,10 @@ class ChatServer2:
                 try:
                     client_socket.sendall(message.encode('utf-8'))
                 except Exception as e:
+                    if "WinError 10054" in str(e):
+                        continue
+                    if "WinError 10038" in str(e):
+                        continue
                     if "Errno 9" in str(e):
                         continue
                     print(f"Error broadcasting message to {name}: {e}")
@@ -181,7 +198,9 @@ class ChatServer3:
                     client_name = self.client_names[client_socket]
                     print(f"[{now}] {client_name} disconnected of Server 3 from: {addr}")
                     self.broadcast_message(f"[{now}]  {client_name} has left the chat.")
-                    client.socket.close()
+                    del self.client_names[client_socket]
+                    del self.client_sockets[client_socket]
+                    client_socket.close()
                     continue
 
                 print(f"[Room3]Sender: {sender_name}, Time: {current_time}, Message: {data}")
@@ -191,6 +210,10 @@ class ChatServer3:
                         client.sendall(f"[{now}] {sender_name}: {data}".encode('utf-8'))
             except Exception as e:
                 if "WinError 10054" in str(e):
+                    continue
+                if "WinError 10038" in str(e):
+                    continue
+                if "Errno 9" in str(e):
                     continue
                 print(f"Error: {e}")
                 break
@@ -218,6 +241,10 @@ class ChatServer3:
                 try:
                     client_socket.sendall(message.encode('utf-8'))
                 except Exception as e:
+                    if "WinError 10054" in str(e):
+                        continue
+                    if "WinError 10038" in str(e):
+                        continue
                     if "Errno 9" in str(e):
                         continue
                     print(f"Error broadcasting message to {name}: {e}")
@@ -226,7 +253,7 @@ if __name__ == "__main__":
     server1 = ChatServer()
     server2 = ChatServer2()
     server3 = ChatServer3()
-    os.system('cls')
+    os.system('clear')
     Thread(target=server1.start).start()
     Thread(target=server2.start).start()
     Thread(target=server3.start).start()
