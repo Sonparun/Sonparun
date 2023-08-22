@@ -12,5 +12,5 @@
 
 //secretWord("aheiayd",3) -> "hey"
 //(a(he)i(ayd))
-//Tje triplets with the secret letter can overlap.
+//The triplets with the secret letter can overlap.
 //ahe=14,hei=22,ayd=30:a series with a difference of 8.
