@@ -14,3 +14,26 @@
 //(a(he)i(ayd))
 //The triplets with the secret letter can overlap.
 //ahe=14,hei=22,ayd=30:a series with a difference of 8.
+
+function secretWord(str, len) {
+    let result = '';
+    
+    for (let i = 0; i <= str.length - 3 * len; i++) {
+      const triplet1 = str.charCodeAt(i + len - 1) - str.charCodeAt(i + len - 2);
+      const triplet2 = str.charCodeAt(i + 2 * len - 1) - str.charCodeAt(i + 2 * len - 2);
+      
+      if (triplet2 - triplet1 === triplet1) {
+        for (let j = i + len - 1; j < str.length; j += len) {
+          result += str[j];
+        }
+        break;
+      }
+    }
+    
+    return result;
+  }
+  
+  console.log(secretWord("sadbpstcrdavefikkgoenqrt", 5)); // Output: "brake"
+  console.log(secretWord("aheiayd", 3)); // Output: "hey"
+  
+  
